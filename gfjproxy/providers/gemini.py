@@ -124,15 +124,16 @@ def gemini_generate_content(
             for msg in messages
         ],
     }
+is_gemini_3x = model.startswith("gemini-3.")
 
     for key, value in (settings or {}).items():
-        if key == "temperature":
+        if key == "temperature" and not is_gemini_3x:
             generation_config["temperature"] = value
         elif key == "max_tokens":
             generation_config["maxOutputTokens"] = value
-        elif key == "top_k":
+        elif key == "top_k" and not is_gemini_3x:
             generation_config["topK"] = value
-        elif key == "top_p":
+        elif key == "top_p" and not is_gemini_3x:
             generation_config["topP"] = value
         elif key == "frequency_penalty":
             generation_config["frequencyPenalty"] = value
@@ -141,6 +142,8 @@ def gemini_generate_content(
         elif key == "search" and value:
             gemini_request["tools"] = [{"googleSearch": {}}]
 
+    if is_gemini_3x:
+        generation_config["thinkingConfig"] = {"thinkingLevel": "LOW"}
     try:
         response = http_client.post(
             f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
