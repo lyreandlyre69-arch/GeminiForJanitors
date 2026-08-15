@@ -125,7 +125,6 @@ def gemini_generate_content(
         ],
     }
 is_gemini_3x = model.startswith("gemini-3.")
-
     for key, value in (settings or {}).items():
         if key == "temperature" and not is_gemini_3x:
             generation_config["temperature"] = value
