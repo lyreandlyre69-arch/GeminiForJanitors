@@ -2,7 +2,6 @@ from typing import Any
 
 import httpx2
 
-from .._globals import PROCESS_TIMEOUT
 from ..http_client import http_client
 from ..logging import xlog
 from ..models import JaiMessage, JaiResult, JaiResultMetadata, JaiResultTokenUsage
@@ -148,7 +147,7 @@ def gemini_generate_content(
             f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
             headers={"x-goog-api-key": api_key},
             json=gemini_request,
-            timeout=PROCESS_TIMEOUT,
+            timeout=90,
         )
         response.raise_for_status()
         gemini_result = response.json()
