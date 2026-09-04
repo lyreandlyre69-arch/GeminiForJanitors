@@ -141,7 +141,7 @@ def gemini_generate_content(
             gemini_request["tools"] = [{"googleSearch": {}}]
 
     if is_gemini_3x:
-        generation_config["thinkingConfig"] = {"thinkingLevel": "LOW"}
+        generation_config["thinkingConfig"] = {"thinkingLevel": "MEDIUM"}
     try:
         response = http_client.post(
             f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
