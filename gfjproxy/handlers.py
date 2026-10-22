@@ -108,7 +108,7 @@ def _handle_request(
         extras = (
             f"You have a `{provider_name}` API key but you didn't specify a model for it.\n"
             "Make sure to use OpenRouter model syntax `provider/model`.\n"
-            "Examples: `google/gemini-2.5-flash`, `cerebras/llama3.1-8b`, `deepseek/deepseek-chat`, etc."
+            "Examples: `google/gemini-3.8-flash`, `cerebras/llama3.1-8b`, `deepseek/deepseek-chat`, etc."
         )
 
         if provider_name in ("openrouter", "nvidia"):
