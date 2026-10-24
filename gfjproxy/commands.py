@@ -357,7 +357,7 @@ def fallback(args, user, jai_req, response):
     if len(models) < 2:
         raise CommandError(
             "`//fallback` needs at least two models, separated by commas."
-            " For example: `//fallback gemini-3.8-flash, gemini-3.7-flash`."
+            " For example: `//fallback gemini-3.8-flash, gemini-3.6-flash`."
         )
 
     if len(models) > FALLBACK_MAX:
@@ -756,7 +756,7 @@ instead of showing you an error.
 
 ## **Setting it up**
 
-`//fallback gemini-3.8-flash, gemini-3.7-flash, gemini-3.6-flash`
+`//fallback gemini-3.8-flash, gemini-3.6-flash`
 
 The order is the priority order: the proxy always starts with the first model \
 and only moves to the next one when the previous one fails. \
